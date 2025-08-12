@@ -72,7 +72,7 @@ When a request is made for a user that does not exist.
 ```
 **Example 2: Bad Request (`400 BAD_REQUEST`)**
 
-When creating an user with an invalid email.
+When creating a user with an invalid email.
 
 ```json
 {
