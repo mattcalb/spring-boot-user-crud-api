@@ -108,7 +108,7 @@ Follow these instructions to get the project running on your local machine.
     ```sh
     mvn spring-boot:run
     ```
-    The API will be available at `http://localhost:8080`.
+    The API will be available at `http://localhost:8080/api/users`.
 
 ---
 
