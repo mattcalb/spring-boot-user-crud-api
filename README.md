@@ -15,9 +15,9 @@ This project provides a clean and functional backend solution for user managemen
 - [Features](#-features)
 - [Technologies Used](#️-technologies-used)
 - [Prerequisites](#-prerequisites)
+- [Error Handling](#-error-handling)
 - [Getting Started](#-getting-started)
 - [Configuration](#️-configuration)
-- [Error Handling](#-error-handling)
 
 ---
 
@@ -35,12 +35,13 @@ This project provides a clean and functional backend solution for user managemen
 ## 🛠️ Technologies Used
 
 -   **Backend**:
-    -   Java 17
-    -   MapStruct
-    -   Spring Boot 3
+    -   Java **21**
+    -   Spring Boot **3.5.4**
     -   Spring Data JPA (Hibernate)
     -   Spring Web
-    -   Validation API
+    -   Spring Boot Starter Validation
+    -   MapStruct **1.6.3**
+    -   Lombok
 -   **Database**:
     -   PostgreSQL
 -   **Build Tool**:
@@ -48,7 +49,7 @@ This project provides a clean and functional backend solution for user managemen
 ---
 ## ✅ Prerequisites
 
--   JDK 17 or later
+-   **JDK 21** or later
 -   Maven 3.8 or later
 -   A running instance of PostgreSQL (or your chosen database)
 
@@ -72,7 +73,7 @@ When a request is made for a user that does not exist.
 ```
 **Example 2: Bad Request (`400 BAD_REQUEST`)**
 
-When creating an user with an invalid email.
+When creating a user with an invalid email.
 
 ```json
 {
@@ -108,7 +109,7 @@ Follow these instructions to get the project running on your local machine.
     ```sh
     mvn spring-boot:run
     ```
-    The API will be available at `http://localhost:8080`.
+    The API will be available at `http://localhost:8080/api/users`.
 
 ---
 
@@ -131,3 +132,7 @@ spring.jpa.show-sql=true
 # Error handling config
 spring.mvc.throw-exception-if-no-handler-found=true
 spring.web.resources.add-mappings=false
+```
+### Annotation Processors
+
+The project uses Lombok and MapStruct. Make sure your IDE (e.g., IntelliJ IDEA) has annotation processing enabled for the `mapstruct-processor` dependency to ensure Mappers are correctly generated during compilation.
