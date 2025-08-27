@@ -70,6 +70,10 @@ public class UserService {
                 UserNotFoundException::new
         );
 
+        if(userRepository.findByEmail(userUpdateDto.email()).isPresent()) {
+            throw new EmailAlreadyRegisteredException();
+        }
+
         userUpdate.updateUserFromDto(userUpdateDto, user);
 
         userRepository.save(user);
