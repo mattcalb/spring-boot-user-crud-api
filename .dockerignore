@@ -1,0 +1,54 @@
+# Maven build artifacts
+target/
+!target/*.jar
+
+# Git
+.git
+.gitignore
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+.settings/
+.project
+.classpath
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Local Maven dependencies (if any)
+.m2/
+
+# Spring Boot
+*.pid
+
+# Local configuration files
+application-dev.properties
+application-local.properties
+.env
+
+# Docker
+docker-compose.override.yml
+Dockerfile.dev
+
+# Documentation
+*.md
+!README.md
+
+# Temporary files
+*.tmp
+*.swp
+*.bak
