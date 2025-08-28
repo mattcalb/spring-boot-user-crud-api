@@ -3,37 +3,28 @@
 A robust REST API built with Spring Boot to perform Create, Read, Update, and Delete (CRUD) operations on user entities.
 
 ---
-
 ## ✨ Description
 
 This project provides a clean and functional backend solution for user management, serving as an ideal starting point for applications that require user profile handling.
 
 ---
-
 ## 📋 Table of Contents
-
 - [Features](#-features)
 - [Technologies Used](#️-technologies-used)
 - [Prerequisites](#-prerequisites)
-- [Error Handling](#-error-handling)
 - [Getting Started](#-getting-started)
 - [Configuration](#️-configuration)
-
+- [Error Handling](#-error-handling)
 ---
-
 ## 🎯 Features
-
 -   **Create**: Register a new user.
 -   **Read**: Retrieve a list of all users or a single user by their ID.
 -   **Update**: Modify an existing user's information.
 -   **Delete**: Remove a user from the system.
 -   **Custom Exception Handling**: A global handler (`@RestControllerAdvice`) that provides consistent and meaningful JSON error responses for scenarios like "resource not found" or validation failures.
 -   Built-in data validation for user inputs.
-
 ---
-
 ## 🛠️ Technologies Used
-
 -   **Backend**:
     -   Java **21**
     -   Spring Boot **3.5.4**
@@ -46,50 +37,56 @@ This project provides a clean and functional backend solution for user managemen
     -   PostgreSQL
 -   **Build Tool**:
     -   Maven
+-   **Containerization**:
+    -   Docker & Docker Compose
 ---
 ## ✅ Prerequisites
 
+### For Docker (Recommended):
+-   **Docker** and **Docker Compose** installed
+
+### For Manual Setup:
 -   **JDK 21** or later
 -   Maven 3.8 or later
--   A running instance of PostgreSQL (or your chosen database)
-
+-   A running instance of PostgreSQL
 ---
-## ❗ Error Handling
-
-The API uses a standardized format for error responses. When an error occurs, you will receive a JSON response in the following structure:
-
-**Example 1: Resource Not Found (`404 NOT_FOUND`)**
-
-When a request is made for a user that does not exist.
-
-```json
-{
-    "status": 404,
-    "type": "https://example.com/problems/user-not-found",
-    "title": "User not found",
-    "detail": "User not found.",
-    "errors": null
-}
-```
-**Example 2: Bad Request (`400 BAD_REQUEST`)**
-
-When creating a user with an invalid email.
-
-```json
-{
-    "status": 400,
-    "type": "https://example.com/problems/argument-not-valid",
-    "title": "Argument not valid",
-    "detail": "Validation error. Please check fields.",
-    "errors": [
-        "email: Invalid email format."
-    ]
-}
-```
-
 ## 🚀 Getting Started
 
-Follow these instructions to get the project running on your local machine.
+### 🐳 Docker Setup (Recommended)
+
+The easiest way to run this application is using Docker Compose, which will automatically set up both the application and PostgreSQL database.
+
+1.  **Clone the repository**
+    ```sh
+    git clone https://github.com/mattcalb/spring-boot-user-crud-api.git
+    cd spring-boot-user-crud-api
+    ```
+
+2.  **Run with Docker Compose**
+    ```sh
+    docker compose up -d --build
+    ```
+
+3.  **Access the API**
+    The API will be available at `http://localhost:8080/api/users`
+
+4.  **Stop the application**
+    ```sh
+    docker compose down
+    ```
+
+**What Docker Compose includes:**
+- ✅ Spring Boot application (port 8080)
+- ✅ PostgreSQL database (port 5432)
+- ✅ Automatic database setup
+- ✅ Network configuration
+- ✅ Data persistence
+
+---
+
+### 🔧 Manual Setup
+
+If you prefer to run without Docker:
 
 1.  **Clone the repository**
     ```sh
@@ -109,16 +106,18 @@ Follow these instructions to get the project running on your local machine.
     ```sh
     mvn spring-boot:run
     ```
+
     The API will be available at `http://localhost:8080/api/users`.
 
 ---
-
 ## ⚙️ Configuration
 
+### Docker Configuration
+When using Docker Compose, the application is automatically configured. The database connection details are handled by environment variables in the `docker-compose.yml` file.
+
+### Manual Configuration
 Your `application.properties` should look something like this:
-
 ```properties
-
 # Database config
 spring.datasource.url=jdbc:postgresql://localhost:5432/[your_database]
 spring.datasource.username=[your_database_username]
@@ -133,6 +132,37 @@ spring.jpa.show-sql=true
 spring.mvc.throw-exception-if-no-handler-found=true
 spring.web.resources.add-mappings=false
 ```
-### Annotation Processors
 
+### Annotation Processors
 The project uses Lombok and MapStruct. Make sure your IDE (e.g., IntelliJ IDEA) has annotation processing enabled for the `mapstruct-processor` dependency to ensure Mappers are correctly generated during compilation.
+## ❗ Error Handling
+The API uses a standardized format for error responses. When an error occurs, you will receive a JSON response in the following structure:
+
+**Example 1: Resource Not Found (`404 NOT_FOUND`)**
+When a request is made for a user that does not exist.
+```json
+{
+    "status": 404,
+    "type": "https://example.com/problems/user-not-found",
+    "title": "User not found",
+    "detail": "User not found.",
+    "errors": null
+}
+```
+
+**Example 2: Bad Request (`400 BAD_REQUEST`)**
+When creating a user with an invalid email.
+```json
+{
+    "status": 400,
+    "type": "https://example.com/problems/argument-not-valid",
+    "title": "Argument not valid",
+    "detail": "Validation error. Please check fields.",
+    "errors": [
+        "email: Invalid email format."
+    ]
+}
+```
+---
+## 📝 License
+This project is open source and available under the [MIT License](LICENSE).
