@@ -9,7 +9,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - spring_boot_user_crud_postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
 
   user-api:
     build: .
